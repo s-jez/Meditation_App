@@ -1,17 +1,19 @@
-const buttons = document.querySelectorAll(".buttons button");
+const inputs = document.querySelectorAll(".buttons input");
 const musicSection = document.querySelector(".music-section");
-
-let musicIndex = 1;
+const audioSrc = ["/music/01.mp3"];
+let musicIndex = 0;
+let audio = document.getElementById("audio");
+audio.src = audioSrc[musicIndex];
 
 const playMusic = () => {
-  console.log("playing...");
+  audio.play();
 };
 const nextMusic = () => {
   console.log("next...");
 };
 const stopMusic = () => {
-  console.log("stop...");
+  audio.pause();
 };
-buttons[0].addEventListener("click", playMusic);
-buttons[1].addEventListener("click", stopMusic);
-buttons[2].addEventListener("click", nextMusic);
+inputs[0].addEventListener("click", playMusic);
+inputs[1].addEventListener("click", stopMusic);
+inputs[2].addEventListener("click", nextMusic);

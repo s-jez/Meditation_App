@@ -35,7 +35,7 @@ main .buttons {
   flex-direction: column;
   align-items: center;
 }
-main button {
+main input {
   width: 25%;
   height: 30px;
   border: 0;
