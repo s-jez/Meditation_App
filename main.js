@@ -2,10 +2,12 @@ import { audioSrc } from "./audio-source.js";
 
 const inputs = document.querySelectorAll(".buttons input");
 const musicSection = document.querySelector(".music-section");
-let musicTitle = document.createElement("h1");
-let musicTime = document.createElement("p");
+
 let audio = document.getElementById("audio");
 let audioIndex = 0;
+
+let musicTitle = document.createElement("h1");
+let musicTime = document.createElement("p");
 
 const playMusic = () => {
   audio.src = audioSrc[audioIndex].src;
