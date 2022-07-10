@@ -2,6 +2,8 @@ import { audioSrc } from "./audio-source.js";
 
 const inputs = document.querySelectorAll(".buttons input");
 const musicSection = document.querySelector(".music-section");
+let musicTitle = document.createElement("h1");
+let musicTime = document.createElement("p");
 let audio = document.getElementById("audio");
 let audioIndex = 0;
 
@@ -27,12 +29,17 @@ const stopMusic = () => {
 };
 const getElementsMusic = () => {
   musicSection.innerHTML = "";
-  let musicTitle = document.createElement("h1");
-  let musicTime = document.createElement("p");
   musicTitle.innerHTML = audioSrc[audioIndex].title;
-  musicTime.innerHTML = audioSrc[audioIndex].time;
   musicSection.appendChild(musicTitle);
   musicSection.appendChild(musicTime);
+  setInterval(() => {
+    let mins = Math.floor(audio.currentTime / 60);
+    let secs = Math.floor(audio.currentTime % 60);
+    if (secs < 10) {
+      secs = "0" + String(secs);
+    }
+    musicTime.innerHTML = mins + ":" + secs;
+  }, 10);
 };
 
 inputs[0].addEventListener("click", playMusic);
