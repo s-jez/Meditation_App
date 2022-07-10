@@ -14,20 +14,23 @@ nav {
 }
 main {
   width: 50%;
+  max-width: 800px;
   height: 40vh;
   display: flex;
   flex-direction: column;
   padding: 1.5em;
-  background-color: rgb(66, 66, 136);
+  background-color: rgba(66, 66, 136, .7);
+  border: 1px solid rgba(174, 174, 174, .2);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, .5);
+  backdrop-filter: blur(15px);
   margin: auto;
   margin-top: 3em;
   margin-bottom: 3em;
   border-radius: 1em;
-  opacity: 0.95;
 }
 main section {
   text-align: center;
-  margin: 0.5em;
+  margin: 1em;
   color: #fff;
 }
 main .buttons {
@@ -41,7 +44,7 @@ main .buttons .controls {
   justify-content: center;
 }
 main input {
-  width: 25%;
+  width: 35%;
   height: 30px;
   border: 0;
   border-radius: 0.5em;
@@ -65,15 +68,12 @@ a {
   main {
     width: 90%;
   }
-  main button {
-    width: 80%;
-  }
 }
 @media (max-width: 768px) {
   main {
     width: 60%;
   }
-  main button {
+  main input {
     width: 50%;
   }
   main .buttons .controls {
