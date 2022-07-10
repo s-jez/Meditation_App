@@ -25,22 +25,27 @@ const previousMusic = () => {
   getElementsMusic();
 };
 const stopMusic = () => {
-  audio.pause();
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
 };
 const getElementsMusic = () => {
   musicSection.innerHTML = "";
   musicTitle.innerHTML = audioSrc[audioIndex].title;
   musicSection.appendChild(musicTitle);
   musicSection.appendChild(musicTime);
-  setInterval(() => {
-    let mins = Math.floor(audio.currentTime / 60);
-    let secs = Math.floor(audio.currentTime % 60);
-    if (secs < 10) {
-      secs = "0" + String(secs);
-    }
-    musicTime.innerHTML = mins + ":" + secs;
-  }, 10);
+  setTime();
 };
+const setTime = setInterval(() => {
+  let mins = Math.floor(audio.currentTime / 60);
+  let secs = Math.floor(audio.currentTime % 60);
+  if (secs < 10) {
+    secs = "0" + String(secs);
+  }
+  musicTime.innerHTML = mins + ":" + secs;
+}, 10);
 
 inputs[0].addEventListener("click", playMusic);
 inputs[1].addEventListener("click", stopMusic);
