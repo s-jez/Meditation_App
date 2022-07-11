@@ -15,19 +15,23 @@ export class AudioPlayer {
   playMusic() {
     this.setAudio();
     this.audio.play();
-    this.renderAudioElements();
+    this.renderIndexCounter();
   }
   nextMusic() {
-    this.setAudio();
-    this.audio.play();
     this.index++;
-    this.renderAudioElements();
+    this.switchMusic();
   }
   previousMusic() {
+    this.index--;
+    this.switchMusic();
+  }
+  switchMusic() {
+    if (this.index < 0) {
+      return;
+    }
     this.setAudio();
     this.audio.play();
-    this.index--;
-    this.renderAudioElements();
+    this.renderIndexCounter();
   }
   pauseMusic() {
     if (audio.paused) {
@@ -35,9 +39,9 @@ export class AudioPlayer {
     } else {
       this.audio.pause();
     }
-    this.renderAudioElements();
+    this.renderIndexCounter();
   }
-  renderAudioElements() {
+  renderIndexCounter() {
     const audioElement = audioSrc[this.index];
     this.title = audioElement.title;
     setInterval(() => {
@@ -47,8 +51,12 @@ export class AudioPlayer {
         seconds = "0" + String(seconds);
       }
       this.time = minutes + ":" + seconds;
-      document.querySelector(".music-title").textContent = this.title;
-      document.querySelector(".music-time").textContent = this.time;
+      let musicTitle = document.querySelector(".music-title");
+      let musicTime = document.querySelector(".music-time");
+      if (musicTitle != null && musicTime != null) {
+        musicTitle.textContent = this.title;
+        musicTime.textContent = this.time;
+      }
     }, 10);
   }
   setVolume(volume) {

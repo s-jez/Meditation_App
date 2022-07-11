@@ -3,7 +3,6 @@ import { AudioPlayer } from "./audio-player.js";
 const inputs = [...document.querySelectorAll(".buttons input")];
 
 const audioPlayer = new AudioPlayer();
-
 inputs.forEach((item, index) => {
   switch (index) {
     case 0:
