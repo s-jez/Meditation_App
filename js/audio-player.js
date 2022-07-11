@@ -1,4 +1,4 @@
-import { audioSrc } from "./audio-source.js";
+import { audioSrcs } from "./audio-sources.js";
 
 export class AudioPlayer {
   constructor() {
@@ -10,12 +10,10 @@ export class AudioPlayer {
   }
 
   setAudio() {
-    this.audio.src = audioSrc[this.index].src;
+    this.audio.src = audioSrcs[this.index].src;
   }
   playMusic() {
-    this.setAudio();
-    this.audio.play();
-    this.renderIndexCounter();
+    this.switchMusic();
   }
   nextMusic() {
     this.index++;
@@ -28,21 +26,19 @@ export class AudioPlayer {
   switchMusic() {
     if (this.index < 0) {
       return;
+    } else if (this.index >= 2) {
+      this.index = 1;
     }
     this.setAudio();
     this.audio.play();
     this.renderIndexCounter();
   }
   pauseMusic() {
-    if (audio.paused) {
-      this.audio.play();
-    } else {
-      this.audio.pause();
-    }
+    audio.paused ? this.audio.play() : this.audio.pause();
     this.renderIndexCounter();
   }
   renderIndexCounter() {
-    const audioElement = audioSrc[this.index];
+    const audioElement = audioSrcs[this.index];
     this.title = audioElement.title;
     setInterval(() => {
       let minutes = Math.floor(this.audio.currentTime / 60);
@@ -53,7 +49,7 @@ export class AudioPlayer {
       this.time = minutes + ":" + seconds;
       let musicTitle = document.querySelector(".music-title");
       let musicTime = document.querySelector(".music-time");
-      if (musicTitle != null && musicTime != null) {
+      if (musicTitle !== undefined && musicTime !== undefined) {
         musicTitle.textContent = this.title;
         musicTime.textContent = this.time;
       }

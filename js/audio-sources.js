@@ -1,4 +1,4 @@
-export const audioSrc = [
+export const audioSrcs = [
   {
     title: "Relaxing Music 01",
     src: "https://megawrzuta.pl/files/a24a421c47c5e6cb859506eb51789703.mp3",
